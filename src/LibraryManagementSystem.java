@@ -11,7 +11,7 @@ public class LibraryManagementSystem {
     private ArrayList<Patron> patrons;
 
     // Searches for a patron by ID
-    public Patron findPatron(String patronId) {
+    public Patron findPatron(String patronId){
 
         for (Patron patron : patrons) {
 
@@ -62,7 +62,7 @@ public class LibraryManagementSystem {
             return false;
         }
         // Validate fine
-        if (validateFine(overdueFine)){
+        if (!validateFine(overdueFine)){
             System.out.println("Overdue fine must be between $0-$250.");
             return false;
         }
@@ -129,7 +129,8 @@ public class LibraryManagementSystem {
                 String[] data = line.split("-", 4);
 
                 // Make sure all 4 fields exist
-                if (data.length != 4) {System.out.println("Skipping invalid record: " + line);
+                if (data.length != 4){
+                    System.out.println("Skipping invalid record: " + line);
 
                     //increment
                     skipped++;
@@ -146,7 +147,7 @@ public class LibraryManagementSystem {
                 try {
                     overdueFine = Double.parseDouble(data[3].trim());
 
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e){
                     System.out.println("Skipping record with invalid fine: " + line);
                     skipped++;
                     continue;
