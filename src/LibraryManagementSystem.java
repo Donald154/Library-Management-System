@@ -102,6 +102,82 @@ public class LibraryManagementSystem {
         }
     }
 
+    // Imports patrons from a txt file
+    public void importPatrons(String filePath) {
+        //New file
+        File file = new File(filePath);
+
+        //Try-Catch block for error exceptions
+        try {
+            Scanner fileScanner = new Scanner(file);
+
+            int added = 0;
+            int skipped = 0;
+
+            while (fileScanner.hasNextLine()) {
+
+                String line = fileScanner.nextLine().trim();
+
+                // Will skip if lines are blank
+                if (line.isEmpty()) {
+                    continue;
+                }
+
+                //Expected format
+                //ID-Name-Address-OverdueFine
+
+                String[] data = line.split("-", 4);
+
+                // Make sure all 4 fields exist
+                if (data.length != 4) {System.out.println("Skipping invalid record: " + line);
+
+                    //increment
+                    skipped++;
+                    continue;
+                }
+
+                String patronId = data[0].trim();
+                String name = data[1].trim();
+                String address = data[2].trim();
+                double overdueFine;
+
+                // Convert fine from String to double
+                // Try-Catch block for error exceptions
+                try {
+                    overdueFine = Double.parseDouble(data[3].trim());
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Skipping record with invalid fine: " + line);
+                    skipped++;
+                    continue;
+                }
+
+                // Try adding the patron
+                if (addPatron(patronId, name, address, overdueFine)) {
+                    added++;
+                } else {
+
+                    System.out.println("Skipping invalid patron: " + patronId);
+                    skipped++;
+                }
+            }
+
+            fileScanner.close();
+
+            System.out.println("\nImport complete. " + added + " patron(s) added.");
+
+            if (skipped > 0) {
+
+                System.out.println(skipped + " record(s) skipped.");
+            }
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println(
+                    "Error: The specified file could not be found."
+            );
+        }
+    }
 
 
 }
