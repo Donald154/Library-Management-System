@@ -56,15 +56,31 @@ public class Main {
                 // Import patrons from a text file
                 case "1":
 
-                    System.out.print(
-                            "Enter the file path for the patron text file: "
-                    );
+                    System.out.println("\nThe text file should contain one patron per line " + "using the following format:");
 
-                    String filePath = scanner.nextLine();
+                    System.out.println("ID-Name-Address-OverdueFine");
+
+                    System.out.println("Examples:");
+
+                    System.out.println("1245789-Sarah Jones-1136 Gorden Ave. Orlando, FL 32822-40.54");
+
+                    System.out.println("3256897-Mason Arby-6060 Saginaw St. Casselberry, FL 34852-0");
+
+                    System.out.println("4567891-Avery Jones-1919 Pine Lance Blvd. Oviedo, FL 32478-1.36");
+
+                    System.out.println("----------------------------------------------------------------------------------");
+
+                    System.out.print("Enter the file path for the patron text file: ");
+
+                    String filePath = scanner.nextLine().trim();
+
+                    // Removes quotes on file path to avoid errors
+                    if (filePath.startsWith("\"") && filePath.endsWith("\"")){
+                        filePath = filePath.substring(1, filePath.length() - 1);
+                }
 
                     lms.importPatrons(filePath);
 
-                    // Display patrons after import
                     lms.displayPatron();
 
                     break;
