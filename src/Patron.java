@@ -45,8 +45,6 @@ public class Patron {
     //toString
     @Override
     public String toString(){
-        return String.format(
-                "ID: %s%nName: %s%nAddress: %s%nOverdue Fine: $%.2f", patronId, name, address, overdueFine
-        );
+        return String.format("ID: %s%nName: %s%nAddress: %s%nOverdue Fine: $%.2f", patronId, name, address, overdueFine);
     }
 }
