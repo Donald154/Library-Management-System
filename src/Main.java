@@ -1,10 +1,25 @@
-// Main application
+/*   Donald Pughsley
+ *   CEN 3024C - Software Development 1
+ *   9/21/2026
+ *   Main.java
+ *   This class is the main method and also controls the main interface for the LMS including accepting user input
+ */
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args){
+
+        /*
+         * method: main
+         * parameters: String[] args
+         * return: void
+         * purpose: Entry point for the Library Management System. Creates the LMS
+         *          and Scanner objects, displays the interactive menu, accepts
+         *          user selections, and calls the appropriate LMS methods until
+         *          the user chooses to exit
+         */
 
         Scanner scanner = new Scanner(System.in);
 
@@ -30,6 +45,12 @@ public class Main {
 
             String choice = scanner.nextLine();
 
+            /*
+             * Each case used for choice selection
+             * Each input is validated before continuing so the
+             * user can correct invalid input without
+             * restarting the entire add-patron process or continuing
+             */
             switch (choice) {
 
                 // Import patrons from a text file
@@ -75,6 +96,7 @@ public class Main {
                         System.out.print("Enter Patron Name: ");
                         name = scanner.nextLine();
 
+                        //Regex to ensure only letters are entered for the name
                         if (!name.trim().isEmpty()
                                 && name.matches("[a-zA-Z ]+")) {
 
