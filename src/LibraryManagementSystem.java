@@ -1,4 +1,13 @@
-//Class to manage all records in the LMS
+/*
+ * Donald Pughsley
+ * CEN-3024C - Software Development I
+ * 9/21/2026
+ * LibraryManagementSystem.java
+ *
+ * This class manages all patron records for the Library Management System.
+ * It stores Patron objects in an ArrayList and provides functionality for
+ * locating, validating, adding, removing, displaying, and importing patrons.
+ */
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,7 +19,12 @@ public class LibraryManagementSystem {
     // Using generics to store patrons in the system
     private ArrayList<Patron> patrons;
 
-    // Searches for a patron by ID
+    /*
+     * method: findPatron
+     * parameters: String patronId
+     * return: Patron
+     * purpose: Searches the patron list using the patron ID
+     */
     public Patron findPatron(String patronId){
 
         for (Patron patron : patrons) {
@@ -28,8 +42,11 @@ public class LibraryManagementSystem {
         patrons = new ArrayList<>();
     }
 
-    //validation for ID
-    //Makes sure there is 7 digits and doesn't already exist
+    /*   validation for ID
+     *   Makes sure there is 7 digits and doesn't already exist
+     *   Regex used to make sure only 7 digits are accepted
+     */
+
     public boolean validateId(String patronId){
         if (!patronId.matches("\\d{7}")){
             return false;
@@ -38,12 +55,22 @@ public class LibraryManagementSystem {
         return findPatron(patronId) == null;
     }
 
-    //Validate overdue fine range
+    /*
+     * method: validateFine
+     * parameters: double overdueFine
+     * return: boolean
+     * purpose: Determines whether the patron's overdue fine is within the allowed range of $0 through $250.
+     */
     public boolean validateFine(double overdueFine){
         return overdueFine >= 0 && overdueFine <= 250;
     }
 
-    // Adds new patron
+    /*
+     * method: addPatron
+     * parameters: String patronId, String name, String address,double overdueFine
+     * return: boolean
+     * purpose: Validates the information provided for a new patron and if it's good it will add the patron to the LMS
+     */
     public boolean addPatron(String patronId, String name, String address, double overdueFine){
 
         //Validate ID
