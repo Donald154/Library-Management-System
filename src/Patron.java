@@ -1,5 +1,13 @@
-//Class will represent patron's stores in the system
-// Each patron's contain a unique 7 digit ID
+/* Donald Pughsley
+ * CEN-3024C - Software Development I
+ * 9/21/2026
+ * Patron.java
+ *
+ * This class represents a patron in the Library Management System.
+ * Each patron object stores the patron's unique ID, name, address, and overdue
+ * fine amount. Patron objects are created and managed by the
+ * LibraryManagementSystem class.
+ */
 
 public class Patron {
 
