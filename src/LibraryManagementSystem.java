@@ -89,7 +89,7 @@ public class LibraryManagementSystem {
 
     //Display functionality
     public void displayPatron(){
-        System.out.println("\n========== Current LMS Patron ==========");
+        System.out.println("\n========== Current Patron's  ==========");
 
         if (patrons.isEmpty()){
             System.out.println("No Patron is currently in the system");

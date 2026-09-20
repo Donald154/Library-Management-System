@@ -1,4 +1,4 @@
-//Main application
+// Main application
 
 import java.util.Scanner;
 
@@ -8,38 +8,48 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        //Create LMS object
+        // Create LMS object
         LibraryManagementSystem lms = new LibraryManagementSystem();
 
-        System.out.println("========================= Library Management System =========================");
+        System.out.println(
+                "========================= Library Management System ========================="
+        );
 
-        //Ask user for patron txt file
-        System.out.println("Enter the file path for the patron text file");
-        String filePath = scanner.nextLine();
-
-        //Import patrons
-        lms.importPatrons(filePath);
-
-        //Display imported patrons
-        lms.displayPatron();
         boolean running = true;
 
-        //Keeps the menu running until the user exist
+        // Keeps the menu running until the user exits
         while (running) {
 
             System.out.println("\n================ LMS Menu ================");
-            System.out.println("1. Add Patron");
-            System.out.println("2. Remove Patron");
-            System.out.println("3. Display All Patrons");
-            System.out.println("4. Exit");
+            System.out.println("1. Import Patrons From File");
+            System.out.println("2. Add Patron");
+            System.out.println("3. Remove Patron");
+            System.out.println("4. Display All Patrons");
+            System.out.println("5. Exit");
             System.out.print("Enter selection: ");
 
             String choice = scanner.nextLine();
 
             switch (choice) {
 
-                // Add a new patron
+                // Import patrons from a text file
                 case "1":
+
+                    System.out.print(
+                            "Enter the file path for the patron text file: "
+                    );
+
+                    String filePath = scanner.nextLine();
+
+                    lms.importPatrons(filePath);
+
+                    // Display patrons after import
+                    lms.displayPatron();
+
+                    break;
+
+                // Add a new patron
+                case "2":
 
                     System.out.print("Enter Patron ID: ");
                     String patronId = scanner.nextLine();
@@ -81,7 +91,7 @@ public class Main {
                     break;
 
                 // Remove a patron by ID
-                case "2":
+                case "3":
 
                     System.out.print(
                             "Enter Patron ID to remove: "
@@ -91,12 +101,14 @@ public class Main {
 
                     if (lms.removePatron(removeId)) {
 
-                        System.out.println("Patron removed successfully."
+                        System.out.println(
+                                "Patron removed successfully."
                         );
 
                     } else {
 
-                        System.out.println("Patron ID not found."
+                        System.out.println(
+                                "Patron ID not found."
                         );
                     }
 
@@ -106,14 +118,14 @@ public class Main {
                     break;
 
                 // Display all patrons
-                case "3":
+                case "4":
 
                     lms.displayPatron();
 
                     break;
 
                 // Exit application
-                case "4":
+                case "5":
 
                     System.out.println(
                             "Exiting Library Management System."
@@ -127,7 +139,7 @@ public class Main {
                 default:
 
                     System.out.println(
-                            "Invalid option. Please enter 1 through 4."
+                            "Invalid option. Please enter 1 through 5."
                     );
             }
         }
@@ -135,6 +147,3 @@ public class Main {
         scanner.close();
     }
 }
-
-
-
